@@ -1,0 +1,17 @@
+#searchBar {
+  margin: 15px 0px;
+}
+
+.tableWrapper {
+  max-height: 400px;
+  overflow: auto;
+  background-color: white;
+}
+
+body {
+	background-color: gray;
+	background-image: url("image3.jpg");
+	background-size: 1600px 1200px;
+	background-repeat: no-repeat;
+	background-position: center;
+}

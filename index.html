@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body ng-app="directoryApp">
+    <div class="container">
+      <div class="row">
+
+        <!--<h1>
+          <img src="directions.jpg" alt="Campus Picture" style="width:680px;height:220px;">
+          <img src="index.jpg" alt="UF Emblem" style="width:220px;height:220px;">
+        </h1>-->
+        <div class="page-header">
+          <div class="well well-sm">
+            <h1>UF Directory App</h1>
+          </div>
+        </div>
+      </div>
+      <div class="row" ng-controller="ListingsController">
+        <div class="col-md-6">
+          <div class="input-group" id="searchBar">
+            <!-- 
+
+                Implement a way to filter through listings using the search bar 
+
+              -->
+            <!--<span class="input-group-addon" id="sizing-addon1"></span>-->
+            <input type="text" class="form-control" placeholder="Search" ng-model="query" size = "80">
+          </div>
+          <div class="tableWrapper">
+            <table class="table table-bordered table-hover">
+              <tr>
+                <th>Code</th>
+                <th>Building Name</th>
+                <th></th>
+              </tr>
+              <tr ng-repeat="listing in listings | filter:query | orderBy: 'code'" ng-click="showDetails(listing)">
+                <td>{{listing.code}}</td>
+                <td>{{listing.name}}</td>
+              </tr>
+              <!-- 
+
+                  Fill in the rest of the table:
+                      * populate the rows with the code and name of each listing
+                      * include a way to remove individual listings
+
+                --> 
+            </table>
+          </div>
+          <!-- 
+
+              Write an HTML form that adds new listings to the directory 
+
+            -->
+        </div>
+        <div class="col-md-6">
+          <div class="jumbotron">
+            <h2>Detailed Information</h2>
+              <div>{{code}}</div>
+              <div>{{name}}</div>
+              <div>{{latitude}}</div>
+              <div>{{longitude}}</div>
+              <div>{{address}}</div>
+              <button ng-click="deleteListing()" id="deleteButton">Delete Listing</button>
+            <!-- 
+
+              Include a way to display detailed information about an individual listing:
+                   * consider how to use ng-click within the the table to implement this feature
+
+             -->
+          
+            <table>
+              <tr>
+                <td>{{"Code:"}}</td>
+                <td><input type="text" id="codeTB" ng-model="newCode"></td>
+                <td>{{"Name:"}}</td>
+                <td><input type="text" id="nameTB" ng-model="newName"></td>
+              </tr>
+              <tr>
+                <td>{{"Latitude:"}}</td>
+                <td><input type="text" id="latTB" ng-model="newLatitude"></td>
+                <td>{{"Longitude:"}}</td>
+                <td><input type="text" id="longTB" ng-model="newLongitude"></td>
+              </tr>
+              <tr>
+                <td>{{"Address:"}}</td>
+                <td><input type="text" id="addTB" ng-model="newAddress"></td>
+                <td></td>
+                <td><button ng-click="addListing()">Add Listing</button></td>
+              </tr>
+            </table> 
+          </div>
+          <div class="alert alert-danger" id="status" role="alert"><span class="glyphicon glyphicon-alert" id="glyph">{{message}}</span></div>
+        </div>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+    <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+    <script src="app.js"></script>
+    <script src="listingController.js"></script>
+    <script src="listingFactory.js"></script>
+  </body>
+</html>
